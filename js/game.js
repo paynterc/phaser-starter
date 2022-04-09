@@ -1,5 +1,13 @@
-var upKey, leftKey, rightKey, downKey, attKey, spaceKey, activePointer, centerX, centerY, W, H, defaultVolume;
+var upKey, leftKey, rightKey, downKey, attKey, spaceKey, activePointer, centerX, centerY, defaultVolume, animConfigs, score, lives;
+const W = 960;
+const H = 544;
 
+const MAX_SPEED = 200; // pixels/second
+const DRAG = 1000; // pixels/second
+const GRAVITY = 2600; // pixels/second/second
+const JUMP_SPEED = -900; // pixels/second (negative y is up)
+const ACCELERATION = 800; // pixels/second/second
+const UNITSIZE = 32;
 
 const fireInputIsActive = function() {
     return activePointer.isDown;
@@ -38,10 +46,11 @@ var config = {
     },
     parent: 'ph_game',
     backgroundColor: '#000000',
-    scene: [BootScene,MenuScene,GameScene,SettingsScene],
+    scene: [BootScene,MenuScene,GameScene,SettingsScene,HudScene],
     physics: {
         default: 'arcade',
         arcade: {
+            fps: 260,
             debug: false,
         }
     },

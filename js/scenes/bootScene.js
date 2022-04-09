@@ -7,14 +7,18 @@ class BootScene extends Phaser.Scene{
 
     preload()
     {
+        // Images
         this.load.image('ring', 'img/ring.png');
         this.load.image('square', 'img/ui/whiteSquare32x.png');
         this.load.image('audio', 'img/ui/Audio34x.png');
         this.load.image('equalizer', 'img/ui/Equalizer34x.png');
-        this.load.audio('theme1', 'audio/music/Mushrooms.mp3');
+        this.load.image('heart', 'img/heart.png');
 
-//         this.load.image('bullet', 'img/bullet.png');
-//         this.load.audio('theme1', 'audio/music/Electro Fight - Kwon.mp3');
+        // Spritesheets
+        this.load.spritesheet('emyIdle', 'img/emyIdle.png',{ frameWidth: 32, frameHeight: 32 });
+
+        // Audio
+        this.load.audio('theme1', 'audio/music/Mushrooms.mp3');
 //         this.load.audio('incoming1', 'audio/sfx/incoming1.mp3');
 
 
@@ -24,17 +28,21 @@ class BootScene extends Phaser.Scene{
     {
         centerX = this.cameras.main.width / 2;
         centerY = this.cameras.main.height / 2;
-        W = this.cameras.main.width;
-        H = this.cameras.main.height;
         defaultVolume = 0.15;
 
-        // spaceKey.on('up', function(event) {
-        //     this.scene.launch('ControlScene');
-        //     this.scene.pause();
-        // },this);
+        lives = 3;
+        score = 0;
 
         this.mediaService = new MediaService(this);
         this.mediaService.setMusic('theme1');
+
+        animConfigs = {};
+        animConfigs.emyIdle = {
+            key: 'emyIdle',
+            frames: this.anims.generateFrameNumbers('emyIdle', { start: 0, end: 3, first: 0 }),
+            frameRate: 8,
+            repeat: -1
+        };
 
         this.scene.start('MenuScene');
     }

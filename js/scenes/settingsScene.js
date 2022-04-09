@@ -53,6 +53,7 @@ class SettingsScene extends  Phaser.Scene{
         let settingsButton = this.add.sprite(36,H-36,'equalizer').setAlpha(0.5).setInteractive().on('pointerdown', (pointer, localX, localY, event) => {
             //this.bootScene.events.emit('audioClicked');
             this.scene.resume('GameScene');
+            this.scene.resume('HudScene');
             this.scene.stop();
         },this).on('pointerover',function(){
             this.setAlpha(1);
